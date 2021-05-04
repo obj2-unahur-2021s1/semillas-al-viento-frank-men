@@ -1,9 +1,9 @@
 package ar.edu.unahur.obj2.semillasAlViento
 
-abstract class Planta(val anioObtencionSemilla: Int, var altura: Float) {
+abstract class Planta(val anioObtencionSemilla: Int, var altura: Float) { //Altura deberia ser VAL, no var.
   fun esFuerte() = this.horasDeSolQueTolera() > 10
 
-  fun parcelaTieneComplicaciones(parcela: Parcela) =
+  fun parcelaTieneComplicaciones(parcela: Parcela) = //probablemente sea un acoplamiento innecesario.
     parcela.plantas.any { it.horasDeSolQueTolera() < parcela.horasSolPorDia }
 
   abstract fun horasDeSolQueTolera(): Int
