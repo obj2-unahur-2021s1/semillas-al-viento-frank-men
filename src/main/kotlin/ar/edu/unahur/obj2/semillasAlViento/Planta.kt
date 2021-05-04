@@ -7,8 +7,9 @@ abstract class Planta(val anioObtencionSemilla: Int, var altura: Float) { //Altu
     parcela.plantas.any { it.horasDeSolQueTolera() < parcela.horasSolPorDia }
 
   abstract fun horasDeSolQueTolera(): Int
-  abstract fun daSemillas(): Boolean
+  abstract fun daSemillas(): Boolean //aca se podria evitar redundancia.
 }
+
 
 class Menta(anioObtencionSemilla: Int, altura: Float) : Planta(anioObtencionSemilla, altura) {
   override fun horasDeSolQueTolera() = 6
@@ -37,3 +38,23 @@ class Soja(anioObtencionSemilla: Int, altura: Float, val esTransgenica: Boolean)
     return this.esFuerte() || (this.anioObtencionSemilla > 2007 && this.altura > 1)
   }
 }
+
+//Volvi
+
+//Podes ir tirando las cosas aca, especifica linea y error
+//------------------------------------------------------------------------------------------------
+// COSAS A MEJORAR EN CLASE PLANTA:
+//
+// Linea 3: Clase Planta: El enunciado dice que altura es una medida
+// en metros, y que *NUNCA* cambia. deberia ser val.
+//
+// Linea 6: función parcelaTieneComplicaciones debe estar en la clase parcela. (Desacoplamiento)
+//
+// Linea 10: Da semillas: para que una planta de nuevas semillas, la planta debe ser
+// fuerte *O* debe cumplir una condicion extra. Ser fuerte, al ser una posibilidad siempre,
+// deberia estar dentro de la funcion, luego se le agregaria la otra posibilidad con un supe).
+//
+// Linea 19: Soja transgenica: La soja transgenica a mi parecer deberia ser una clase nueva,
+// El codigo seria mas robusto y legible, y al mismo tiempo, implementarlo no requiere mucho
+// codigo, basta con hacer que herede de la soja e implemente esas 2 diferencias.
+//------------------------------------------------------------------------------------------------

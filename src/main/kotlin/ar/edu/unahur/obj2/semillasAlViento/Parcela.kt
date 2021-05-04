@@ -2,13 +2,14 @@ package ar.edu.unahur.obj2.semillasAlViento
 
 class Parcela(val ancho: Int, val largo: Int, val horasSolPorDia: Int) {
   val plantas = mutableListOf<Planta>()
-  var cantidadPlantas = 0
+  var cantidadPlantas = 0 //podria pedirle size a plantas.
 
   fun superficie() = ancho * largo
+
   fun cantidadMaximaPlantas() =
     if (ancho > largo) ancho * largo / 5 else ancho * largo / 3 + largo
 
-  fun plantar(planta: Planta) {
+  fun plantar(planta: Planta) { //hacelo pero comentado
     if (cantidadPlantas == this.cantidadMaximaPlantas()) {
       println("Ya no hay lugar en esta parcela")
     } else if (horasSolPorDia > planta.horasDeSolQueTolera() + 2) {
@@ -21,10 +22,10 @@ class Parcela(val ancho: Int, val largo: Int, val horasSolPorDia: Int) {
 }
 
 class Agricultora(val parcelas: MutableList<Parcela>) {
-  var ahorrosEnPesos = 20000
+  var ahorrosEnPesos = 20000 //innecesario
 
   // Suponemos que una parcela vale 5000 pesos
-  fun comprarParcela(parcela: Parcela) {
+  fun comprarParcela(parcela: Parcela) { //innecesario
     if (ahorrosEnPesos >= 5000) {
       parcelas.add(parcela)
       ahorrosEnPesos -= 5000
@@ -38,7 +39,7 @@ class Agricultora(val parcelas: MutableList<Parcela>) {
       }
     }
 
-  fun plantarEstrategicamente(planta: Planta) {
+  fun plantarEstrategicamente(planta: Planta) { //se puede hacer una comprobacion anti-null en la propia funcion, evitando el !!
     val laElegida = parcelas.maxBy { it.cantidadMaximaPlantas() - it.cantidadPlantas }!!
     laElegida.plantas.add(planta)
   }
