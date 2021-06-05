@@ -13,7 +13,7 @@ abstract class Planta(val anioObtencionSemilla: Int, var altura: Float) { //Altu
 
 class Menta(anioObtencionSemilla: Int, altura: Float) : Planta(anioObtencionSemilla, altura) {
   override fun horasDeSolQueTolera() = 6
-  override fun daSemillas() = this.esFuerte() || altura > 0.4
+  override fun daSemillas() = this.esFuerte() || altura > 0.4F
 }
 
 class Soja(anioObtencionSemilla: Int, altura: Float, val esTransgenica: Boolean) : Planta(anioObtencionSemilla, altura) {
