@@ -34,7 +34,7 @@ class Agricultora() {
   fun plantarEstrategicamente(planta: Planta) = parcelaConMasEspacio()?.plantar(planta)
 
   fun parcelaConMasEspacio(): Parcela? {
-    check(parcelas.isEmpty()){
+    check(parcelas.isNotEmpty()){
       "No hay parcelas"
     }
     return parcelas.maxByOrNull { it.cantidadMaximaPlantas() - it.cantidadPlantas() }
