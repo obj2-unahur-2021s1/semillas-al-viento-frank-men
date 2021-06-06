@@ -1,19 +1,19 @@
 package ar.edu.unahur.obj2.semillasAlViento
 
-abstract class Planta(val anioObtencionSemilla: Int, var altura: Float) { //Altura deberia ser VAL, no var.
+abstract class Planta(val anioObtencion: Int, val altura: Double) { //Altura deberia ser VAL, no var.
   fun esFuerte() = this.horasDeSolQueTolera() > 10
 
   abstract fun horasDeSolQueTolera(): Int
-  abstract fun daSemillas(): Boolean //aca se podria evitar redundancia.
+  open fun daSemillas(): Boolean = this.esFuerte()
 }
 
 
-class Menta(anioObtencionSemilla: Int, altura: Float) : Planta(anioObtencionSemilla, altura) {
+class Menta(anioObtencion: Int, altura: Double) : Planta(anioObtencion, altura) {
   override fun horasDeSolQueTolera() = 6
-  override fun daSemillas() = this.esFuerte() || altura > 0.4F
+  override fun daSemillas() = super.daSemillas() || altura > 0.4
 }
 
-class Soja(anioObtencionSemilla: Int, altura: Float, val esTransgenica: Boolean) : Planta(anioObtencionSemilla, altura) {
+class Soja(anioObtencion: Int, altura: Double, val esTransgenica: Boolean) : Planta(anioObtencion, altura) {
   override fun horasDeSolQueTolera(): Int  {
     // ¡Magia de Kotlin! El `when` es como un `if` pero más poderoso:
     // evalúa cada línea en orden y devuelve lo que está después de la flecha.
@@ -26,13 +26,11 @@ class Soja(anioObtencionSemilla: Int, altura: Float, val esTransgenica: Boolean)
     return if (esTransgenica) horasBase * 2 else horasBase
   }
 
-
   override fun daSemillas(): Boolean  {
     if (this.esTransgenica) {
       return false
     }
-
-    return this.esFuerte() || (this.anioObtencionSemilla > 2007 && this.altura > 1)
+    return this.esFuerte() || (this.anioObtencion > 2007 && this.altura > 1)
   }
 }
 
@@ -42,7 +40,7 @@ class Soja(anioObtencionSemilla: Int, altura: Float, val esTransgenica: Boolean)
 //--------------------------------------------------------------------------------------------------//
 //                                                                                                  //
 // Linea 3: Clase Planta: El enunciado dice que altura es una medida                                //
-// en metros, y que *NUNCA* cambia. deberia ser val.                                                //
+// en metros, y que *NUNCA* cambia. deberia ser val.          check                                 //
 //                                                                                                  //
 // Linea 6: función parcelaTieneComplicaciones debe estar en la clase parcela. (Desacoplamiento)    //
 //                                                                                                  //

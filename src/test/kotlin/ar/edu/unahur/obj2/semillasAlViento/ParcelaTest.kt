@@ -33,14 +33,14 @@ class ParcelaTest: DescribeSpec({
 
             it("Si tiene complicaciones:"){
                 val parcelaDeMarcela = Parcela(15,20,9)
-                val plantita = Menta(2000,0.5F)
+                val plantita = Menta(2000,0.5)
                 parcelaDeMarcela.plantar(plantita)
                 parcelaDeMarcela.parcelaTieneComplicaciones().shouldBeTrue()
             }
             it("Si se puede plantar:"){
                 val parcelaDeMarcela = Parcela(15,20,10)
-                val plantitaDeSoja = Soja(2000,0.7F,false)
-                val sojaTrans= Soja(2000,0.7F,true)
+                val plantitaDeSoja = Soja(2000,0.7,false)
+                val sojaTrans= Soja(2000,0.7,true)
                 parcelaDeMarcela.plantar(plantitaDeSoja)
                 shouldThrowAny {parcelaDeMarcela.plantar(sojaTrans)}
                 parcelaDeMarcela.cantidadPlantas().shouldBe(1)
@@ -50,7 +50,7 @@ class ParcelaTest: DescribeSpec({
     describe("Agricultoras"){
         val parcela = Parcela(10,10,9)
         val parcela1 = Parcela(1,2,6)
-        val menta = Menta(2017,0.5F)
+        val menta = Menta(2017,0.5)
         val agricultora = Agricultora()
         agricultora.parcelas.add(parcela)
         agricultora.parcelas.add(parcela1)
