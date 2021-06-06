@@ -4,7 +4,6 @@ import io.kotest.assertions.throwables.shouldThrowAny
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.collections.shouldContain
-import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.shouldBe
 
 class ParcelaTest: DescribeSpec({
@@ -38,11 +37,11 @@ class ParcelaTest: DescribeSpec({
                 parcelaDeMarcela.parcelaTieneComplicaciones().shouldBeTrue()
             }
             it("Si se puede plantar:"){
-                val parcelaDeMarcela = Parcela(15,20,10)
-                val plantitaDeSoja = Soja(2000,0.7,false)
-                val sojaTrans= Soja(2000,0.7,true)
+                val parcelaDeMarcela = Parcela(15, 20, 10)
+                val plantitaDeSoja = Soja(2000, 0.7)
+                val sojaTrans = SojaTransgenica(2000, 0.7)
                 parcelaDeMarcela.plantar(plantitaDeSoja)
-                shouldThrowAny {parcelaDeMarcela.plantar(sojaTrans)}
+                shouldThrowAny { parcelaDeMarcela.plantar(sojaTrans) }
                 parcelaDeMarcela.cantidadPlantas().shouldBe(1)
             }
         }

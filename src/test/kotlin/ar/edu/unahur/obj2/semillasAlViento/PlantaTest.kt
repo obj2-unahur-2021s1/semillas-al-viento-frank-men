@@ -15,20 +15,20 @@ class PlantaTest: DescribeSpec({
             mentaBaja.horasDeSolQueTolera().shouldBe(6)
         }
         it("Soja: cuantas horas de sol tolera"){
-            val sojaBaja = Soja(2007,0.4,false)
-            val sojaMedia = Soja(2010,0.7,false)
-            val sojaAlta = Soja(2010,1.5,false)
+            val sojaBaja = Soja(2007, 0.4)
+            val sojaMedia = Soja(2010, 0.7)
+            val sojaAlta = Soja(2010, 1.5)
             sojaBaja.horasDeSolQueTolera().shouldBe(6)
             sojaMedia.horasDeSolQueTolera().shouldBe(7)
             sojaAlta.horasDeSolQueTolera().shouldBe(9)
         }
-        it("Soja Trans: cuantas horas de sol tolera"){
-            val sojaBaja = Soja(2007,0.4,true)
-            val sojaMedia = Soja(2010,0.7,true)
-            val sojaAlta = Soja(2010,1.5,true)
-            sojaBaja.horasDeSolQueTolera().shouldBe(12)
-            sojaMedia.horasDeSolQueTolera().shouldBe(14)
-            sojaAlta.horasDeSolQueTolera().shouldBe(18)
+        it("Soja Trans: cuantas horas de sol tolera") {
+            val sojaTransBaja = SojaTransgenica(2007, 0.4)
+            val sojaTransMedia = SojaTransgenica(2010, 0.7)
+            val sojaTransAlta = SojaTransgenica(2010, 1.5)
+            sojaTransBaja.horasDeSolQueTolera().shouldBe(12)
+            sojaTransMedia.horasDeSolQueTolera().shouldBe(14)
+            sojaTransAlta.horasDeSolQueTolera().shouldBe(18)
         }
     }
     describe("Plantas - Fortaleza"){
@@ -36,21 +36,21 @@ class PlantaTest: DescribeSpec({
             val mentaBaja = Menta(2016,0.4)
             mentaBaja.esFuerte().shouldBeFalse()
         }
-        it("Soja: Es fuerte"){
-            val sojaBaja = Soja(2007,0.4,false)
-            val sojaMedia = Soja(2010,0.7,false)
-            val sojaAlta = Soja(2010,1.5,false)
+        it("Soja: Es fuerte") {
+            val sojaBaja = Soja(2007, 0.4)
+            val sojaMedia = Soja(2010, 0.7)
+            val sojaAlta = Soja(2010, 1.5)
             sojaBaja.esFuerte().shouldBeFalse()
             sojaMedia.esFuerte().shouldBeFalse()
             sojaAlta.esFuerte().shouldBeFalse()
         }
-        it("Soja Trans: Es fuerte"){
-            val sojaBaja = Soja(2007,0.4,true)
-            val sojaMedia = Soja(2010,0.7,true)
-            val sojaAlta = Soja(2010,1.5,true)
-            sojaBaja.esFuerte().shouldBeTrue()
-            sojaMedia.esFuerte().shouldBeTrue()
-            sojaAlta.esFuerte().shouldBeTrue()
+        it("Soja Trans: Es fuerte") {
+            val sojaTransBaja = SojaTransgenica(2007, 0.4)
+            val sojaTransMedia = SojaTransgenica(2010, 0.7)
+            val sojaTransAlta = SojaTransgenica(2010, 1.5)
+            sojaTransBaja.esFuerte().shouldBeTrue()
+            sojaTransMedia.esFuerte().shouldBeTrue()
+            sojaTransAlta.esFuerte().shouldBeTrue()
         }
     }
     describe("Plantas - Semillas"){
@@ -60,21 +60,21 @@ class PlantaTest: DescribeSpec({
             mentaBaja.daSemillas().shouldBeFalse()
             mentaAlta.daSemillas().shouldBeTrue()
         }
-        it("Soja: Da semillas"){
-            val sojaBaja = Soja(2007,0.4,false)
-            val sojaMedia = Soja(2010,0.7,false)
-            val sojaAlta = Soja(2010,1.5,false)
+        it("Soja: Da semillas") {
+            val sojaBaja = Soja(2007, 0.4)
+            val sojaMedia = Soja(2010, 0.7)
+            val sojaAlta = Soja(2010, 1.5)
             sojaBaja.daSemillas().shouldBeFalse()
             sojaMedia.esFuerte().shouldBeFalse()
             sojaAlta.daSemillas().shouldBeTrue()
         }
-        it("Soja Trans: Da semillas"){
-            val sojaBaja = Soja(2007,0.4,true)
-            val sojaMedia = Soja(2010,0.7,true)
-            val sojaAlta = Soja(2010,1.5,true)
-            sojaBaja.daSemillas().shouldBeFalse()
-            sojaMedia.daSemillas().shouldBeFalse()
-            sojaAlta.daSemillas().shouldBeFalse()
+        it("Soja Trans: Da semillas") {
+            val sojaTransBaja = SojaTransgenica(2007, 0.4)
+            val sojaTransMedia = SojaTransgenica(2010, 0.7)
+            val sojaTransAlta = SojaTransgenica(2010, 1.5)
+            sojaTransBaja.daSemillas().shouldBeFalse()
+            sojaTransMedia.daSemillas().shouldBeFalse()
+            sojaTransAlta.daSemillas().shouldBeFalse()
         }
     }
 })
