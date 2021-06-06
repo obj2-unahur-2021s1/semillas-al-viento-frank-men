@@ -1,39 +1,37 @@
 package ar.edu.unahur.obj2.semillasAlViento
 
-abstract class Planta(val anioObtencionSemilla: Int, var altura: Float) {
+abstract class Planta(val anioObtencion: Int, val altura: Double) {
   fun esFuerte() = this.horasDeSolQueTolera() > 10
 
-  fun parcelaTieneComplicaciones(parcela: Parcela) =
-    parcela.plantas.any { it.horasDeSolQueTolera() < parcela.horasSolPorDia }
-
   abstract fun horasDeSolQueTolera(): Int
-  abstract fun daSemillas(): Boolean
+  open fun daSemillas(): Boolean = this.esFuerte()
 }
 
-class Menta(anioObtencionSemilla: Int, altura: Float) : Planta(anioObtencionSemilla, altura) {
+
+class Menta(anioObtencion: Int, altura: Double) : Planta(anioObtencion, altura) {
   override fun horasDeSolQueTolera() = 6
-  override fun daSemillas() = this.esFuerte() || altura > 0.4
+  override fun daSemillas() = super.daSemillas() || altura > 0.4
 }
 
-class Soja(anioObtencionSemilla: Int, altura: Float, val esTransgenica: Boolean) : Planta(anioObtencionSemilla, altura) {
-  override fun horasDeSolQueTolera(): Int  {
-    // ¡Magia de Kotlin! El `when` es como un `if` pero más poderoso:
-    // evalúa cada línea en orden y devuelve lo que está después de la flecha.
+open class Soja(anioObtencion: Int, altura: Double) : Planta(anioObtencion, altura) {
+  override fun horasDeSolQueTolera(): Int {
     val horasBase = when {
-      altura < 0.5  -> 6
-      altura < 1    -> 7
-      else          -> 9
+      altura < 0.5 -> 6
+      altura < 1 -> 7
+      else -> 9
     }
-
-    return if (esTransgenica) horasBase * 2 else horasBase
+    return horasBase
   }
 
+  override fun daSemillas(): Boolean {
+    return super.daSemillas() || (this.anioObtencion > 2007 && this.altura > 1)
+  }
+}
 
-  override fun daSemillas(): Boolean  {
-    if (this.esTransgenica) {
-      return false
-    }
+class SojaTransgenica(anioObtencion: Int, altura: Double) : Soja(anioObtencion, altura) {
+  override fun daSemillas() = false
 
-    return this.esFuerte() || (this.anioObtencionSemilla > 2007 && this.altura > 1)
+  override fun horasDeSolQueTolera(): Int {
+    return super.horasDeSolQueTolera() * 2
   }
 }
